@@ -9,11 +9,11 @@
 <body>
 <div class="container">
   <div class="row mt-5">
-      <div  th:if="${Message!=null}">
-          <div th:text="${Message}" class="alert alert-success" role="alert">
-          </div>
-      </div>
     <div class="col-4 offset-4">
+        <div  th:if="${Message!=null}">
+            <div th:text="${Message}" class="alert alert-success" role="alert">
+            </div>
+        </div>
           <form th:action="@{'/register'}" method="post">
                         <div class="form-group">
                             <label>Username</label>

@@ -1,9 +1,9 @@
 package com.example.Eschool.Service;
 
-import com.example.Eschool.Entity.User;
+import com.example.Eschool.Entity.Users;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
-    User getUserByUsername(String username);
-    User createUser(User user);
+    Users getUserByUsername(String username);
+    Users createUser(Users users);
 }
