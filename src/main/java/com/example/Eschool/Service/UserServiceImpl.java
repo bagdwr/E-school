@@ -2,7 +2,7 @@ package com.example.Eschool.Service;
 
 import com.example.Eschool.Entity.Role;
 import com.example.Eschool.Entity.Users;
-import com.example.Eschool.Repository.RoleRepository;
+import com.example.Eschool.Mapper.RoleBatisRepository;
 import com.example.Eschool.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -19,11 +19,11 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final RoleBatisRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,BCryptPasswordEncoder passwordEncoder){
+    public UserServiceImpl(UserRepository userRepository, RoleBatisRepository roleRepository,BCryptPasswordEncoder passwordEncoder){
         this.userRepository=userRepository;
         this.roleRepository=roleRepository;
         this.passwordEncoder=passwordEncoder;
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService{
     @PostConstruct
     public void addValues(){
         Role role=new Role(null,"ROLE_USER");
-        roleRepository.save(role);
+        roleRepository.insertRole(role);
 
         List<Users> users= Arrays.asList(
                 new Users(null,"user","87777777777","user",null),

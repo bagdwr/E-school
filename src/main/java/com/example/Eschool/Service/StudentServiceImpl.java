@@ -1,22 +1,20 @@
 package com.example.Eschool.Service;
 
 import com.example.Eschool.Entity.Student;
-import com.example.Eschool.Mapper.StudentMyBatisRepository;
-import com.example.Eschool.Repository.StudentRepository;
+import com.example.Eschool.Mapper.StudentBatisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService{
-    private final StudentMyBatisRepository studentRepository;
+    private final StudentBatisRepository studentRepository;
 
     @Autowired
-    public StudentServiceImpl(StudentMyBatisRepository studentRepository) {
+    public StudentServiceImpl(StudentBatisRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 

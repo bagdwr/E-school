@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
-public interface StudentMyBatisRepository {
+public interface StudentBatisRepository {
     @Insert("INSERT INTO students values (null,#{age},#{firstname},#{phone},#{surname});")
     int insertStudent(Student student);
 
@@ -16,7 +16,7 @@ public interface StudentMyBatisRepository {
     @Select("select * from students")
     List<Student> findAll();
 
-    @Update("update students set age=#{age}, firstname=#{firstname}, surname=#{surname} where id=#{id};")
+    @Update("update students set age=#{age}, firstname=#{firstname}, phone=#{phone}, surname=#{surname} where id=#{id};")
     int updateStudent(Student student);
 
     @Delete("delete from students where id=#{id}")
