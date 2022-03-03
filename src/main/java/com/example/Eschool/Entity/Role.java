@@ -18,7 +18,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "role_name")
+    @Column(name = "name")
     private String name;
 
     @Override
