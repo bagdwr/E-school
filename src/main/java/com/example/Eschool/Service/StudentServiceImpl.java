@@ -5,6 +5,9 @@ import com.example.Eschool.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -39,5 +42,19 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public void saveStudent(Student student) {
         studentRepository.save(student);
+    }
+
+    @PostConstruct
+    public void addValuesToDatabase(){
+        List<Student>students= Arrays.asList(
+                new Student(null,"Daurbek","Sakhtarov","87789115835",20),
+                new Student(null,"Azamat","Umbetov","87777777777",20),
+                new Student(null,"Abylai","Sagymbaev","87757757575",21),
+                new Student(null,"Bakberger","Atymtaev","87747747474",19)
+        );
+
+        for (Student s:students){
+            studentRepository.save(s);
+        }
     }
 }

@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -57,5 +59,20 @@ public class UserServiceImpl implements UserService{
             return securityUser;
         }
         throw new UsernameNotFoundException("User not found");
+    }
+
+    @PostConstruct
+    public void addValues(){
+        Role role=new Role(null,"ROLE_USER");
+        roleRepository.save(role);
+
+        List<Users> users= Arrays.asList(
+                new Users(null,"user","87777777777","user",null),
+                new Users(null,"admin","87777777777","admin",null)
+        );
+
+        for(Users u:users){
+            createUser(u);
+        }
     }
 }
