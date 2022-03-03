@@ -8,4 +8,8 @@ public interface StudentService {
     List<Student> getAllStudents();
     Student createStudent(Student student);
     void deleteStudentById(Long id);
+
+    Student getStudentById(Long id);
+
+    void saveStudent(Student student);
 }

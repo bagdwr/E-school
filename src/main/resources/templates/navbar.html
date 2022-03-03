@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navigationBar">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 menu">
+        <a class="navbar-brand profHref" href="/profile" th:text="${user.getUsername()}"></a>
+        <form th:action="@{'/logout'}" method="post" sec:authorize="isAuthenticated()">
+          <button type="submit" class="btn logoutBtn">logout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+<style>
+   .navigationBar{
+     background-color: #5ab6cb;
+     height: 80px;
+   }
+   .menu{
+     display: flex;
+     justify-content: space-between;
+   }
+   .profHref{
+     color:wheat;
+     transition: 0.4s;
+   }
+   .profHref:hover{
+     letter-spacing: 1px;
+     color:wheat;
+   }
+   .logoutBtn{
+     background-color: transparent;
+     border: 1px solid white;
+     font-size: 15px;
+     font-weight: 500;
+     color:white;
+     transition: 0.4s;
+   }
+   .logoutBtn:hover{
+     border-color: black;
+   }
+</style>

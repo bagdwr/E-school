@@ -114,5 +114,44 @@ public class HomeController {
         return "redirect:/profile";
     }
 
+    @GetMapping("/editStudent/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String editStudentById(
+            @PathVariable("id")Long id,
+            Model model
+    ){
+        Student student=null;
+        model.addAttribute("user",getUserData());
+        if(id!=null){
+            student=studentService.getStudentById(id);
+        }
 
+        if(student!=null){
+            model.addAttribute("student",student);
+            return "studentEdit";
+        }
+
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/saveEdit")
+    @PreAuthorize("isAuthenticated()")
+    public String saveEdit(
+            @RequestParam(name = "id")Long id,
+            @RequestParam(name = "firstname")String firstname,
+            @RequestParam(name = "surname")String surname,
+            @RequestParam(name = "phone")String phone,
+            @RequestParam(name = "age")Integer age
+    ){
+        Student student=studentService.getStudentById(id);
+        if(!firstname.isEmpty() && !surname.isEmpty() && !phone.isEmpty() && age!=null){
+            student.setFirstname(firstname);
+            student.setSurname(surname);
+            student.setPhone(phone);
+            student.setAge(age);
+            studentService.saveStudent(student);
+        }
+
+        return "redirect:/profile";
+    }
 }
