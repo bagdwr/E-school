@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface StudentService {
     List<Student> getAllStudents();
-    Student createStudent(Student student);
-    void deleteStudentById(Long id);
+    int createStudent(Student student);
+    int deleteStudentById(Long id);
 
     Student getStudentById(Long id);
 
-    void saveStudent(Student student);
+    int saveStudent(Student student);
 }

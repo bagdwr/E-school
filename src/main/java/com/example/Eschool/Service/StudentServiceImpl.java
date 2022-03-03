@@ -1,6 +1,7 @@
 package com.example.Eschool.Service;
 
 import com.example.Eschool.Entity.Student;
+import com.example.Eschool.Mapper.StudentMyBatisRepository;
 import com.example.Eschool.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,10 @@ import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService{
-    private final StudentRepository studentRepository;
+    private final StudentMyBatisRepository studentRepository;
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    public StudentServiceImpl(StudentMyBatisRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
@@ -25,23 +26,23 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student createStudent(Student student) {
-        return studentRepository.save(student);
+    public int createStudent(Student student) {
+        return studentRepository.insertStudent(student);
     }
 
     @Override
-    public void deleteStudentById(Long id) {
-       studentRepository.deleteById(id);
+    public int deleteStudentById(Long id) {
+       return studentRepository.deleteById(id);
     }
 
     @Override
     public Student getStudentById(Long id) {
-        return studentRepository.getById(id);
+        return studentRepository.findById(id);
     }
 
     @Override
-    public void saveStudent(Student student) {
-        studentRepository.save(student);
+    public int saveStudent(Student student) {
+       return studentRepository.updateStudent(student);
     }
 
     @PostConstruct
@@ -54,7 +55,7 @@ public class StudentServiceImpl implements StudentService{
         );
 
         for (Student s:students){
-            studentRepository.save(s);
+            studentRepository.insertStudent(s);
         }
     }
 }
