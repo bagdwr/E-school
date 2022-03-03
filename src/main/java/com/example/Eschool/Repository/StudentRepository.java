@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface StudentRepository extends JpaRepository<Student,Long> {
-    Student findStudentById(Integer id);
     List<Student> findAll();
 }

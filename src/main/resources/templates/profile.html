@@ -48,10 +48,10 @@
                             <th th:text="${s.getAge()}"></th>
                             <th th:text="${s.getPhone()}"></th>
                             <th>
-                                <a class="btn btn-success" th:href="@{'/editStudent?id='+${s.getId()}}">Edit</a>
+                                <a class="btn btn-success" th:href="@{'/editStudent/'+${s.getId()}}">Edit</a>
                             </th>
                             <th>
-                                <a class="btn btn-danger" th:href="@{'/deleteStudent?id='+${s.getId()}}">Delete</a>
+                                <a class="btn btn-danger" th:href="@{'/deleteStudent/'+${s.getId()}}">Delete</a>
                             </th>
                         </tr>
                         </tbody>

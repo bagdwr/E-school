@@ -12,8 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.websocket.server.PathParam;
 
 @Controller
 public class HomeController {
@@ -99,5 +102,17 @@ public class HomeController {
         model.addAttribute("user",getUserData());
         return "studentCreate";
     }
+
+    @GetMapping("/deleteStudent/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String deleteStudentById(
+            @PathVariable("id")Long id
+    ){
+        if(id!=null){
+            studentService.deleteStudentById(id);
+        }
+        return "redirect:/profile";
+    }
+
 
 }
